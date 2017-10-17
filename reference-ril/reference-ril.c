@@ -1977,6 +1977,8 @@ static void requestSetupDataCall(void *data, size_t datalen, RIL_Token t)
     err = at_send_command("AT%DATA=2,\"UART\",1,,\"SER\",\"UART\",0", NULL);
 #endif /* USE_TI_COMMANDS */
 
+    RLOGE("------------------------------>%s %d\n",__func__, __LINE__);
+
     if (current_modem_type == UNKNOWN_MODEM) {
     int fd, qmistatus;
     size_t cur = 0;

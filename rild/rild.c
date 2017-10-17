@@ -127,6 +127,7 @@ int main(int argc, char **argv)
         }
     }
 
+    RLOGE("--------------------------1> %s\n", rilLibPath);
     //Wait for device ready.
     if (rilLibPath == NULL) {
 		while(UNKNOWN_MODEM == modem_type){
@@ -146,7 +147,7 @@ int main(int argc, char **argv)
     }
 
     start_uevent_monitor();
-
+/*
     switch (modem_type){
 		case ZTE_MODEM:
 		rilLibPath = REFERENCE_RIL_ZTE_PATH;
@@ -158,8 +159,22 @@ int main(int argc, char **argv)
 		rilLibPath = REFERENCE_RIL_DEF_PATH;
 		break;
     }
+*/
 
     if (rilLibPath == NULL) {
+
+    switch (modem_type){
+        case ZTE_MODEM:
+        rilLibPath = REFERENCE_RIL_ZTE_PATH;
+        break;
+
+        case HUAWEI_MODEM:
+        case AMAZON_MODEM:
+        default:
+        rilLibPath = REFERENCE_RIL_DEF_PATH;
+        break;
+    }
+
         if ( 0 == property_get(LIB_PATH_PROPERTY, libPath, NULL)) {
             // No lib sepcified on the command line, and nothing set in props.
             // Assume "no-ril" case.
@@ -170,7 +185,7 @@ int main(int argc, char **argv)
     }
 
     /* special override when in the emulator */
-#if 1
+#if 0
     {
         static char*  arg_overrides[3];
         static char   arg_device[32];
@@ -278,6 +293,7 @@ OpenLib:
 #endif
     switchUser();
 
+    RLOGE("--------------------------2> %s\n", rilLibPath);
     dlHandle = dlopen(rilLibPath, RTLD_NOW);
 
     if (dlHandle == NULL) {

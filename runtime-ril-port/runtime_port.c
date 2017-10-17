@@ -121,6 +121,14 @@ static struct modem_3g_device modem_3g_device_table[] = {
 		.dataport	= "/dev/ttyUSB2",
 		.type		= ZTE_MODEM,
 	},
+	{
+		.name		= "ZTE-MC2716",
+		.idVendor	= "19d2",
+		.idProduct	= "ffed",
+		.deviceport     = "/dev/ttyUSB1",
+		.dataport	= "/dev/ttyUSB0",
+		.type		= ZTE_MODEM,
+	},
 };
 
 /* -------------------------------------------------------------- */

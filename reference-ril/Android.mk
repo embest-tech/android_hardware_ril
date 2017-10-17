@@ -9,11 +9,12 @@ LOCAL_PATH:= $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= \
-    reference-ril.c \
+    embest-ril.c \
     atchannel.c \
     misc.c \
     fcp_parser.c \
-    at_tok.c
+    at_tok.c \
+    conf3gmod.c
 
 LOCAL_SHARED_LIBRARIES := \
     liblog libcutils libutils libril librilutils libruntime-ril-port
@@ -45,7 +46,9 @@ ifeq (foo,foo)
       libcutils libutils
   LOCAL_LDLIBS += -lpthread
   LOCAL_CFLAGS += -DRIL_SHLIB
-  LOCAL_MODULE:= libreference-ril
+  LOCAL_CFLAGS += -DCONFIG3GMOD_SHLIB
+  LOCAL_MODULE:= embest-ril
+  LOCAL_MODULE_TAGS := optional 
   include $(BUILD_SHARED_LIBRARY)
 else
   #build executable

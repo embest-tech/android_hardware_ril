@@ -3169,11 +3169,13 @@ RIL_register (const RIL_RadioFunctions *callbacks) {
         RLOGE("RIL_register: RIL_RadioFunctions * null");
         return;
     }
+
     if (callbacks->version < RIL_VERSION_MIN) {
         RLOGE("RIL_register: version %d is to old, min version is %d",
              callbacks->version, RIL_VERSION_MIN);
         return;
     }
+
     if (callbacks->version > RIL_VERSION) {
         RLOGE("RIL_register: version %d is too new, max version is %d",
              callbacks->version, RIL_VERSION);
